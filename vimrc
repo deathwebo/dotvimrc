@@ -4,6 +4,9 @@
 " http://net.tutsplus.com
 "
 
+" Pathogen
+execute pathogen#infect()
+
 "Forget compatibility with Vi. Who cares.
 set nocompatible
 
@@ -31,24 +34,25 @@ set hidden
 
 "Set the color scheme. Change this to your preference. 
 "Here's 100 to choose from: http://www.vim.org/scripts/script.php?script_id=625
+set t_Cp=256
 colorscheme xoria256
-set guifont=menlo\ for\ powerline:h20
+"set guifont=Menlo\ for\ powerline:h20
 set showmode
 
 "Set font type and size. Depends on the resolution. Larger screens, prefer h20
-set guifont=Menlo:h15
+set guifont=Hack:h15
 
 "Tab stuff
-set tabstop=3
-set shiftwidth=3
-set softtabstop=3
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 
 "Show command in bottom right portion of the screen
 set showcmd
 
 "Show lines numbers
-set number
+set nonumber
 
 "Prefer relative line numbering?
 "set relativenumber"
@@ -230,3 +234,62 @@ map! ;h <a href=""></a><ESC>5hi
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 set mouse=a
+
+"Silver Searcher integration
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+if executable('ag')
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command =
+       \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+     let g:ctrlp_use_caching = 0
+endif
+
+"swp directory
+set directory=/tmp
+
+"Plugin 'amdt/vim-niji'
+"Plugin 'cakebaker/scss-syntax.vim'
+"Plugin 'chriskempson/base16-vim'
+"Plugin 'digitaltoad/vim-jade'
+"Plugin 'duskhacker/sweet-rspec-vim'
+"Plugin 'evidens/vim-twig'
+"Plugin 'godlygeek/tabular'
+"Plugin 'guns/vim-clojure-static'
+"Plugin 'guns/vim-clojure-highlight'
+"Plugin 'guns/vim-sexp'
+"Plugin 'itspriddle/vim-jquery'
+"Plugin 'leshill/vim-json'
+"Plugin 'majutsushi/tagbar'
+"Plugin 'mattn/webapi-vim'
+"Plugin 'mattn/gist-vim'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'msanders/snipmate.vim'
+"Plugin 'mxw/vim-jsx'
+"Plugin 'nanotech/jellybeans.vim'
+"Plugin 'othree/html5.vim'
+"Plugin 'pangloss/vim-javascript'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'slim-template/vim-slim'
+"Plugin 'timcharper/textile.vim'
+"Plugin 'tpope/vim-cucumber'
+"Plugin 'tpope/vim-endwise'
+"Plugin 'tpope/vim-fireplace'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-haml'
+"Plugin 'tpope/vim-rails'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'tpope/vim-rvm'
+"Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+"Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-unimpaired'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'vim-scripts/matchit.zip'
+"Plugin 'vim-scripts/vimclojure'
+"Plugin 'wavded/vim-stylus'
+"Plugin 'wincent/command-t'
