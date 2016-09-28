@@ -1,19 +1,34 @@
 " .vimrc File
-" Maintained by: Jeffrey Way
-" jeffrey@jeffrey-way.com
-" http://net.tutsplus.com
-"
 
-" Pathogen
-execute pathogen#infect()
+set nocompatible              " required
+filetype off                  " required
 
-"Forget compatibility with Vi. Who cares.
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-"Enable filetypes
-filetype on
-filetype plugin on
-filetype indent on
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle
+" instead of Plugin)
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'chriskempson/base16-vim'
+Plugin 'ack.vim'
+Plugin 'ctrlp.vim'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'docteurklein/vim-symfony'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
 syntax on
 
 "Write the old file out when switching between files.
@@ -34,8 +49,18 @@ set hidden
 
 "Set the color scheme. Change this to your preference. 
 "Here's 100 to choose from: http://www.vim.org/scripts/script.php?script_id=625
-set t_Cp=256
-colorscheme xoria256
+"set t_Cp=256
+"colorscheme xoria256
+
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
+
+let base16colorspace=256
+set background=dark
+set t_Co=16
+colorscheme base16-monokai
+
 "set guifont=Menlo\ for\ powerline:h20
 set showmode
 
@@ -53,9 +78,6 @@ set showcmd
 
 "Show lines numbers
 set nonumber
-
-"Prefer relative line numbering?
-"set relativenumber"
 
 "Indent stuff
 set smartindent
@@ -109,9 +131,6 @@ set splitbelow
 " session settings
 set sessionoptions=resize,winpos,winsize,buffers,tabpages,folds,curdir,help
 
-"Set up an HTML5 template for all new .html files
-"autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-
 "Load the current buffer in Firefox - Mac specific.
 abbrev ff :! open -a firefox.app %:p<cr>
 
@@ -141,14 +160,6 @@ set wildmenu
 
 "Auto-completion menu
 set wildmode=list:longest
-
-"http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-set completeopt=longest,menuone
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 "Map escape key to jj -- much faster
 imap jj <esc>
@@ -188,10 +199,6 @@ nmap <leader>nt :NERDTreeToggle <CR>
 "Show hidden files in NerdTree
 let NERDTreeShowHidden=1
 
-"autopen NERDTree and focus cursor in new document
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
-
 "Helpeful abbreviations
 iab lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 iab llorem Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
@@ -214,18 +221,14 @@ nmap <leader>bv :bel vsp
 " Saves file when Vim window loses focus
 au FocusLost * :wa
 
-" No more stretching for navigating files
-"noremap h ;
-"noremap j h
-"noremap k gj
-"noremap l gk
-"noremap ; l
-
 " Easier file navigation
 nmap J 5j
 nmap K 5k
 xmap J 5j
 xmap K 5k
+
+nnoremap B ^
+nnoremap E $
 
 set showmatch " show matching brackets
 
@@ -250,46 +253,7 @@ endif
 "swp directory
 set directory=/tmp
 
-"Plugin 'amdt/vim-niji'
-"Plugin 'cakebaker/scss-syntax.vim'
-"Plugin 'chriskempson/base16-vim'
-"Plugin 'digitaltoad/vim-jade'
-"Plugin 'duskhacker/sweet-rspec-vim'
-"Plugin 'evidens/vim-twig'
-"Plugin 'godlygeek/tabular'
-"Plugin 'guns/vim-clojure-static'
-"Plugin 'guns/vim-clojure-highlight'
-"Plugin 'guns/vim-sexp'
-"Plugin 'itspriddle/vim-jquery'
-"Plugin 'leshill/vim-json'
-"Plugin 'majutsushi/tagbar'
-"Plugin 'mattn/webapi-vim'
-"Plugin 'mattn/gist-vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'msanders/snipmate.vim'
-"Plugin 'mxw/vim-jsx'
-"Plugin 'nanotech/jellybeans.vim'
-"Plugin 'othree/html5.vim'
-"Plugin 'pangloss/vim-javascript'
-"Plugin 'plasticboy/vim-markdown'
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'slim-template/vim-slim'
-"Plugin 'timcharper/textile.vim'
-"Plugin 'tpope/vim-cucumber'
-"Plugin 'tpope/vim-endwise'
-"Plugin 'tpope/vim-fireplace'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-haml'
-"Plugin 'tpope/vim-rails'
-"Plugin 'tpope/vim-repeat'
-"Plugin 'tpope/vim-rvm'
-"Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-unimpaired'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'vim-ruby/vim-ruby'
-"Plugin 'vim-scripts/matchit.zip'
-"Plugin 'vim-scripts/vimclojure'
-"Plugin 'wavded/vim-stylus'
-"Plugin 'wincent/command-t'
+" CtrlP Settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0

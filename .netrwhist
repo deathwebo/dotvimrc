@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/batman/.homestead'
 let g:netrw_dirhist_2='/Users/batman/Batcave/CENTOS/www/cfar'
 let g:netrw_dirhist_3='/Users/batman/Batcave/plugins/bootstrap-shortcodes'
+let g:netrw_dirhist_4='/etc/apache2/sites-available'
+let g:netrw_dirhist_5='/etc/apache2'
+let g:netrw_dirhist_6='/home/sperantus/code/st-standard/.hg'
+let g:netrw_dirhist_7='/home/sperantus/code/st-standard/.hg/patches/.hg'
